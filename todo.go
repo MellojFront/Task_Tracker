@@ -89,6 +89,7 @@ func (todos *Todos) print() {
 			completedAt,
 		})
 	}
+	writer.SetStyle(table.StyleColoredYellowWhiteOnBlack)
 	writer.Render()
 }
 

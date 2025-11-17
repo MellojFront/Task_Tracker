@@ -2,9 +2,10 @@ package main
 
 func main() {
 	todos := Todos{}
-	todos.add("Купить продукты")
-	todos.add("Прочитать книгу")
-	todos.toogle(0)
+	storage := NewStorage[Todos]("todos.json")
+	storage.Load(&todos)
+	todos.toogle(1)
 	todos.print()
+	storage.Save(todos)
 
 }
