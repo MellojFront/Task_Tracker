@@ -1,9 +1,10 @@
 package main
 
-import (
-	"fmt"
-)
-
 func main() {
-	fmt.Println("Welcome to Task Tracker!")
+	todos := Todos{}
+	todos.add("Купить продукты")
+	todos.add("Прочитать книгу")
+	todos.toogle(0)
+	todos.print()
+
 }
