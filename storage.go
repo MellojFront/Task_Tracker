@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 )
 
@@ -19,6 +20,7 @@ func NewStorage[T any](fileName string) *Storage[T] {
 func (s *Storage[T]) Save(data T) error {
 	fileData, err := json.MarshalIndent(data, "", "  ")
 	if err != nil {
+		fmt.Println("ошибка при сериализации данных:", err)
 		return err
 	}
 

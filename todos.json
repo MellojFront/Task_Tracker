@@ -3,12 +3,28 @@
     "Title": "Обновленная тестовая задача",
     "Completed": true,
     "CreatedAt": "2025-11-17T17:36:39.277206483+03:00",
-    "CompletedAt": "2025-11-17T17:39:14.519527559+03:00"
+    "CompletedAt": "2025-11-17T17:39:14.519527559+03:00",
+    "UpdatedAt": null
   },
   {
     "Title": "Тестовая задача",
     "Completed": true,
     "CreatedAt": "2025-11-17T17:37:37.48238632+03:00",
-    "CompletedAt": "2025-11-17T17:39:27.979622719+03:00"
+    "CompletedAt": "2025-12-11T08:26:50.120756105+03:00",
+    "UpdatedAt": null
+  },
+  {
+    "Title": "Go побежден",
+    "Completed": false,
+    "CreatedAt": "2025-12-11T09:07:04.097501776+03:00",
+    "CompletedAt": null,
+    "UpdatedAt": "2025-12-11T09:22:29.818503953+03:00"
+  },
+  {
+    "Title": "Доделал Cli",
+    "Completed": false,
+    "CreatedAt": "2025-12-11T09:24:48.525725087+03:00",
+    "CompletedAt": null,
+    "UpdatedAt": null
   }
 ]

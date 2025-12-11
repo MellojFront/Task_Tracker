@@ -16,6 +16,7 @@ type Todo struct {
 	Completed   bool
 	CreatedAt   time.Time
 	CompletedAt *time.Time
+	UpdatedAt   *time.Time
 }
 
 // Список задач
@@ -27,6 +28,7 @@ func (todos *Todos) add(Title string) {
 		Title:       Title,
 		Completed:   false,
 		CompletedAt: nil,
+		UpdatedAt:   nil,
 		CreatedAt:   time.Now(),
 	}
 	*todos = append(*todos, todo)
@@ -53,7 +55,7 @@ func (todos *Todos) delete(index int) error {
 	return nil
 }
 
-// Переключает статус задачи (выполнена/не выполнена)
+// Редактирует заголовок задачи по индексу
 func (todos *Todos) edit(index int, title string) error {
 	t := *todos
 
@@ -62,6 +64,8 @@ func (todos *Todos) edit(index int, title string) error {
 	}
 
 	t[index].Title = title
+	now := time.Now()
+	t[index].UpdatedAt = &now
 
 	return nil
 }
@@ -70,7 +74,7 @@ func (todos *Todos) edit(index int, title string) error {
 func (todos *Todos) print() {
 	writer := table.NewWriter()
 	writer.SetOutputMirror(os.Stdout)
-	writer.AppendHeader(table.Row{"#", "Задача", "Статус", "Создана", "Выполнена"})
+	writer.AppendHeader(table.Row{"#", "Задача", "Статус", "Создана", "Выполнена", "Обновлена"})
 
 	for index, t := range *todos {
 		completed := "❌"
@@ -81,12 +85,18 @@ func (todos *Todos) print() {
 				completedAt = t.CompletedAt.Format(time.RFC1123)
 			}
 		}
+		updatedAt := "-"
+		if t.UpdatedAt != nil {
+			updatedAt = t.UpdatedAt.Format(time.RFC1123)
+		}
+
 		writer.AppendRow(table.Row{
 			strconv.Itoa(index),
 			t.Title,
 			completed,
 			t.CreatedAt.Format(time.RFC1123),
 			completedAt,
+			updatedAt,
 		})
 	}
 	writer.SetStyle(table.StyleColoredYellowWhiteOnBlack)
@@ -94,20 +104,22 @@ func (todos *Todos) print() {
 }
 
 // Переключает статус задачи (выполнена/не выполнена)
-func (todos *Todos) toogle(index int) error {
+func (todos *Todos) toggle(index int) error {
 	t := *todos
 
 	if err := t.validateIndex(index); err != nil {
 		return err
 	}
-	isCompleted := t[index].Completed
 
-	if !isCompleted {
-		completionTime := time.Now()
-		t[index].CompletedAt = &completionTime
+	now := time.Now()
+	t[index].UpdatedAt = &now
+	t[index].Completed = !t[index].Completed
+
+	if t[index].Completed {
+		t[index].CompletedAt = &now
+	} else {
+		t[index].CompletedAt = nil
 	}
-
-	t[index].Completed = !isCompleted
 
 	return nil
 }
