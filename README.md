@@ -139,7 +139,5 @@ go run . -list
     *   Начать рефакторинг кода, чтобы реализовать систему с подкомандами (`add`, `list` и т.д.)
 
 
-<!--
-[PROMPT_SUGGESTION]Как мне переделать парсинг аргументов, чтобы использовать позиционные аргументы (подкоманды `add`, `list`), как в README.md?[/PROMPT_SUGGESTION]
-[PROMPT_SUGGESTION]Как реализовать статусы "todo", "in-progress", "done" вместо простого boolean "Completed"?[/PROMPT_SUGGESTION]
--->
+- Как мне переделать парсинг аргументов, чтобы использовать позиционные аргументы (подкоманды `add`, `list`), как в README.md?
+- Как реализовать статусы "todo", "in-progress", "done" вместо простого boolean "Completed"?
